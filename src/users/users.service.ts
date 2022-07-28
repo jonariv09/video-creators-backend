@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { UserRepository } from './respositories/users.repository';
+import { UsersRepository } from './respositories/users.repository';
 
 @Injectable()
 export class UsersService {
+  constructor(private usersRepository: UsersRepository) {}
+
   getById(id: string) {
-    return UserRepository.findById(id);
+    return this.usersRepository.findById(id);
   }
 }
