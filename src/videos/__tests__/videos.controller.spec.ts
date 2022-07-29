@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { VideosController } from './videos.controller';
+import { VideosController } from '../videos.controller';
 
 describe('VideosController', () => {
   let controller: VideosController;
