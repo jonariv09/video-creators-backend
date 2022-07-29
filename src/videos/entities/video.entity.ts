@@ -19,8 +19,8 @@ export class VideoEntity {
   @Column()
   published: boolean;
 
-  @Column({ name: 'created_date' })
-  createdDate: Date;
+  @Column({ name: 'created_date', type: 'date' })
+  createdDate;
 
   @BeforeInsert()
   async setPublished() {
