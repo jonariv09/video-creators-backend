@@ -1,5 +1,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { UserEntity } from 'src/users/entities/user.entity';
+import { VideoEntity } from 'src/videos/entities/video.entity';
 
 const { DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_DATABASE } = process.env;
 
@@ -10,7 +11,7 @@ const settings: TypeOrmModuleOptions = {
   username: DB_USERNAME,
   password: DB_PASSWORD,
   database: DB_DATABASE,
-  entities: [UserEntity],
+  entities: [UserEntity, VideoEntity],
   migrations: ['src/database/migrations/*.ts'],
   synchronize: false,
 };

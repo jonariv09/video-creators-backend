@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { VideosModule } from './videos/videos.module';
 import settings from 'ormconfig';
 
 @Module({
@@ -15,6 +16,7 @@ import settings from 'ormconfig';
     TypeOrmModule.forRoot(settings),
     AuthModule,
     UsersModule,
+    VideosModule,
   ],
   controllers: [AppController],
   providers: [AppService],
