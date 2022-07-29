@@ -11,6 +11,6 @@ export class UsersRepository extends Repository<UserEntity> {
   async findById(id: string) {
     return await this.createQueryBuilder('users')
       .where('users.id = :id', { id })
-      .getMany();
+      .getOne();
   }
 }

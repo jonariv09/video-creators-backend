@@ -1,4 +1,5 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { CreateVideoDto } from './interfaces/create-video.dto';
 import { VideosService } from './videos.service';
 
 @Controller('videos')
@@ -8,5 +9,10 @@ export class VideosController {
   @Get('/getVideoById/:id')
   getById(@Param('id') id: string) {
     return this.videosService.getById(id);
+  }
+
+  @Post('createVideo')
+  createVideo(@Body() videoDto: CreateVideoDto) {
+    return this.videosService.createVideo(videoDto);
   }
 }
