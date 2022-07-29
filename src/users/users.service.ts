@@ -8,4 +8,9 @@ export class UsersService {
   getById(id: string) {
     return this.usersRepository.findById(id);
   }
+
+  followUser() {
+    return this.usersRepository.followUser(this.);
+  }
+
 }
