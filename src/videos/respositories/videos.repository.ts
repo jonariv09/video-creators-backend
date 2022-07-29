@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
+import { UsersVideosLikes } from 'src/entities/users-videos-likes.entity';
 import { UsersRepository } from 'src/users/respositories/users.repository';
 import { DataSource, Repository } from 'typeorm';
 import { VideoEntity } from '../entities/video.entity';
 import { CreateVideoDto } from '../interfaces/create-video.dto';
+import { LikeVideoDto } from '../interfaces/like-video.dto';
 
 @Injectable()
 export class VideosRepository extends Repository<VideoEntity> {
@@ -34,5 +36,17 @@ export class VideosRepository extends Repository<VideoEntity> {
     video.user = user;
 
     return await this.dataSource.manager.save(video);
+  }
+
+  async likeVideo(likeVideoDto: LikeVideoDto) {
+    const { userId, videoId, state } = likeVideoDto;
+    const user = await this.usersRepository.findById(userId);
+    const video = await this.findById(videoId);
+    const userLikes = new UsersVideosLikes();
+    userLikes.user = user;
+    userLikes.video = video;
+    userLikes.likeState = state;
+
+    await this.dataSource.manager.save(userLikes);
   }
 }

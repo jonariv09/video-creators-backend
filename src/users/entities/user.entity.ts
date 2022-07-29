@@ -4,10 +4,12 @@ import {
   Column,
   BeforeInsert,
   OneToMany,
+  ManyToMany,
 } from 'typeorm';
 import { IsEmail } from 'class-validator';
 import * as bcrypt from 'bcrypt';
 import { VideoEntity } from 'src/videos/entities/video.entity';
+import { UsersVideosLikes } from 'src/entities/users-videos-likes.entity';
 
 @Entity('users')
 export class UserEntity {
@@ -34,4 +36,7 @@ export class UserEntity {
 
   @OneToMany(() => VideoEntity, (video) => video.user)
   videos: VideoEntity[];
+
+  @OneToMany(() => UsersVideosLikes, (likes) => likes.user)
+  userLikes: UsersVideosLikes;
 }
