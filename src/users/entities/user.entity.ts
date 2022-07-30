@@ -10,7 +10,7 @@ import { IsEmail } from 'class-validator';
 import * as bcrypt from 'bcrypt';
 import { VideoEntity } from 'src/videos/entities/video.entity';
 import { UsersVideosLikes } from 'src/entities/users-videos-likes.entity';
-import { UsersFollows } from 'src/entities/users-follow.entity';
+import { UsersFollowsEntity } from 'src/entities/users-follow.entity';
 
 @Entity('users')
 export class UserEntity {
@@ -41,6 +41,9 @@ export class UserEntity {
   @OneToMany(() => UsersVideosLikes, (likes) => likes.user)
   userLikes: UsersVideosLikes;
 
-  @OneToMany(() => UsersFollows, (userFollow) => userFollow.user)
-  userFollowed: UsersFollows;
+  @OneToMany(() => UsersFollowsEntity, (userFollow) => userFollow.creator)
+  creator: UsersFollowsEntity;
+
+  @OneToMany(() => UsersFollowsEntity, (userFollow) => userFollow.follower)
+  follower: UsersFollowsEntity;
 }
