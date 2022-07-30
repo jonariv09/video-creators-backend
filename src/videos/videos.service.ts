@@ -18,4 +18,8 @@ export class VideosService {
   likeVideo(likeVideoDto: LikeVideoDto) {
     return this.videosRepository.likeVideo(likeVideoDto);
   }
+
+  publishVideo(id: string) {
+    return this.videosRepository.publishVideo(id);
+  }
 }

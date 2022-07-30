@@ -49,4 +49,13 @@ export class VideosRepository extends Repository<VideoEntity> {
 
     await this.dataSource.manager.save(userLikes);
   }
+
+  async publishVideo(id: string) {
+    const video = await this.findById(id);
+    const { published } = video;
+
+    return await this.dataSource.manager.update(VideoEntity, id, {
+      published: !published,
+    });
+  }
 }

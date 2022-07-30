@@ -21,4 +21,9 @@ export class VideosController {
   likeVideo(@Body() likeVideoDto: LikeVideoDto) {
     return this.videosService.likeVideo(likeVideoDto);
   }
+
+  @Post('/publishVideo/:id')
+  publishVideo(@Param('id') id: string) {
+    return this.videosService.publishVideo(id);
+  }
 }
