@@ -34,7 +34,7 @@ export class VideosRepository extends Repository<VideoEntity> {
     video.description = videoDto.description;
     video.url = videoDto.url;
     video.createdDate = new Date();
-    // video.user = user;
+    video.user = user;
 
     return await this.dataSource.manager.save(video);
   }
