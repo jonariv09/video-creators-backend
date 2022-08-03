@@ -37,9 +37,9 @@ export class VideoEntity {
     this.published = false;
   }
 
-  // @ManyToOne(() => UserEntity, (user) => user.videos)
-  // @JoinColumn({ name: 'id_creator', referencedColumnName: 'id' })
-  // user: UserEntity;
+  @ManyToOne(() => UserEntity, (user) => user.videos)
+  @JoinColumn({ name: 'id_creator', referencedColumnName: 'id' })
+  user: UserEntity;
 
   @OneToMany(() => UsersVideosLikes, (likes) => likes.video)
   videoLikes: UsersVideosLikes;

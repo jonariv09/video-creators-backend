@@ -35,8 +35,8 @@ export class UserEntity {
     this.password = await bcrypt.hash(this.password, 10);
   }
 
-  // @OneToMany(() => VideoEntity, (video) => video.user)
-  // videos: VideoEntity[];
+  @OneToMany(() => VideoEntity, (video) => video.user)
+  videos: VideoEntity[];
 
   @OneToMany(() => UsersVideosLikes, (likes) => likes.user)
   userVideosLikes: UsersVideosLikes[];
