@@ -26,4 +26,9 @@ export class VideosController {
   publishVideo(@Param('id') id: string) {
     return this.videosService.publishVideo(id);
   }
+
+  @Get('/getLikedVideos/:userId')
+  listLikedVideos(@Param('userId') userId: string) {
+    return this.videosService.listLikedVideos(userId);
+  }
 }

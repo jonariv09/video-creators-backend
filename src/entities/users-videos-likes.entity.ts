@@ -20,7 +20,7 @@ export class UsersVideosLikes {
   @JoinColumn({ name: 'video_id', referencedColumnName: 'id' })
   video;
 
-  @ManyToOne(() => UserEntity, (user) => user.userLikes)
+  @ManyToOne(() => UserEntity, (user) => user.userVideosLikes)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user;
 }

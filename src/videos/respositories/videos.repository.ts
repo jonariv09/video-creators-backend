@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UsersVideosLikes } from 'src/entities/users-videos-likes.entity';
+import { UserEntity } from 'src/users/entities/user.entity';
 import { UsersRepository } from 'src/users/respositories/users.repository';
 import { DataSource, Repository } from 'typeorm';
 import { VideoEntity } from '../entities/video.entity';
@@ -33,7 +34,7 @@ export class VideosRepository extends Repository<VideoEntity> {
     video.description = videoDto.description;
     video.url = videoDto.url;
     video.createdDate = new Date();
-    video.user = user;
+    // video.user = user;
 
     return await this.dataSource.manager.save(video);
   }
@@ -57,5 +58,19 @@ export class VideosRepository extends Repository<VideoEntity> {
     return await this.dataSource.manager.update(VideoEntity, id, {
       published: !published,
     });
+  }
+
+  async listLikedVideos(userId: string) {
+    return await this.createQueryBuilder('video')
+      .innerJoin(
+        UsersVideosLikes,
+        'userVideosLikes',
+        'video.id = userVideosLikes.video_id',
+      )
+      .innerJoin(UserEntity, 'users', 'users.id = userVideosLikes.user_id')
+      .where('users.id = :userId', {
+        userId,
+      })
+      .getMany();
   }
 }

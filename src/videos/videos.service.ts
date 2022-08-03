@@ -22,4 +22,8 @@ export class VideosService {
   publishVideo(id: string) {
     return this.videosRepository.publishVideo(id);
   }
+
+  listLikedVideos(userId: string) {
+    return this.videosRepository.listLikedVideos(userId);
+  }
 }

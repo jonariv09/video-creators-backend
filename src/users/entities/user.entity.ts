@@ -4,7 +4,7 @@ import {
   Column,
   BeforeInsert,
   OneToMany,
-  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { IsEmail } from 'class-validator';
 import * as bcrypt from 'bcrypt';
@@ -35,11 +35,11 @@ export class UserEntity {
     this.password = await bcrypt.hash(this.password, 10);
   }
 
-  @OneToMany(() => VideoEntity, (video) => video.user)
-  videos: VideoEntity[];
+  // @OneToMany(() => VideoEntity, (video) => video.user)
+  // videos: VideoEntity[];
 
   @OneToMany(() => UsersVideosLikes, (likes) => likes.user)
-  userLikes: UsersVideosLikes;
+  userVideosLikes: UsersVideosLikes[];
 
   @OneToMany(() => UsersFollowsEntity, (userFollow) => userFollow.creator)
   creator: UsersFollowsEntity;
