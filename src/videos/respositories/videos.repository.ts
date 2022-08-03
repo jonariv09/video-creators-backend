@@ -73,4 +73,16 @@ export class VideosRepository extends Repository<VideoEntity> {
       })
       .getMany();
   }
+
+  async listPublishedVideos(userId: string) {
+    return await this.createQueryBuilder('video')
+      .innerJoin(UserEntity, 'users', 'users.id = video.id_creator')
+      .where('users.id = :userId', {
+        userId,
+      })
+      .andWhere('video.published = :published', {
+        published: true,
+      })
+      .getMany();
+  }
 }
